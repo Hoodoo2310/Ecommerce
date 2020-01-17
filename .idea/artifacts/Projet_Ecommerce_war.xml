@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="Projet_Ecommerce:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>Projet_Ecommerce</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="hello_word.war">
+      <element id="artifact" artifact-name="Projet_Ecommerce:war exploded" />
+    </root>
+  </artifact>
+</component>
