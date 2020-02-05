@@ -8,12 +8,20 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import java.awt.print.PrinterGraphics;
 import java.io.IOException;
 
 public class ProduitController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        HttpSession session = req.getSession();
+        if (session.getAttribute("connect") == null){
+            resp.sendRedirect("/admin/login");
+            return;
+        }
+
         CategorieManager categorieManager = new CategorieManager();
         ProduitManager produitManager = new ProduitManager();
 
@@ -30,7 +38,7 @@ public class ProduitController extends HttpServlet {
 
         String idCat = req.getParameter("idCategorie");
         Categorie categorie = (Categorie) categorieManager.getById(Categorie.class, Integer.parseInt(idCat));
-        produitManager.add(req.getParameter("marque"),req.getParameter("name"), req.getParameter("mini_desc"), req.getParameter("description"), Float.parseFloat(req.getParameter("prix")), Integer.parseInt(req.getParameter("promo")), req.getParameter("url_photo"), categorie);
+        produitManager.add(req.getParameter("marque"),req.getParameter("name"), req.getParameter("mini_desc"), req.getParameter("description"), Float.parseFloat(req.getParameter("prix")), Integer.parseInt(req.getParameter("promo")), req.getParameter("url_photo"), Integer.parseInt(req.getParameter("quantite")), categorie, Boolean.parseBoolean(req.getParameter("isActif")));
         resp.sendRedirect(req.getContextPath() + "/admin/produit");
     }
 }

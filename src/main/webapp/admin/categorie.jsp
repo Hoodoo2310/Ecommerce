@@ -21,6 +21,11 @@
                       <label>Nom de la catégorie</label>
                       <input type="text" class="form-control input-lg" name="nom" placeholder="Merci d'entrer le nom de la catégorie">
                     </div>
+                    <div class="form-group">
+                      <label>Photo de la catégorie</label>
+                      <input type="text" class="form-control input-lg" name="urlPhoto" placeholder="Merci d'entrer l'url photo de la catégorie">
+                    </div>
+                    <input type="hidden" name="action" value="add">
                     <button type="submit" class="btn btn-primary">Envoyer</button>
                   </form>
                 </div>
@@ -39,7 +44,7 @@
           <!-- left column -->
           <div class="col-md-12">
             <!-- general form elements -->
-            <div class="card card-primary">
+            <div class="card card-primary  card-outline">
               <div class="card-header">
                 <h3 class="card-title">Affichage des catégories</h3>
               </div>
@@ -51,6 +56,7 @@
                         <thead>
                         <tr>
                           <th>Catégorie</th>
+                          <th>Url Photo</th>
                           <th>Modifier</th>
                           <th>Supprimer</th>
                         </tr>
@@ -59,6 +65,7 @@
                         <c:forEach items="${ listeCategorie }" var="categorie">
                           <tr>
                             <td>${categorie.getNom()}</td>
+                            <td>${categorie.getUrlPhoto()}</td>
                             <td><a href="/admin/categorie?id=${categorie.getId()}" type="button" class="btn btn-warning">Modifier</a></td>
                             <td>
                               <form action="/admin/categorie" method="post">
@@ -73,6 +80,7 @@
                         <tfoot>
                         <tr>
                           <th>Catégorie</th>
+                          <th>Url Photo</th>
                           <th>Modifier</th>
                           <th>Supprimer</th>
                         </tr>

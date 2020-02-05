@@ -20,14 +20,16 @@ public class Produit {
     private Float prix;
     private int promo;
     private String url_photo;
+    private int quantite;
     @ManyToOne
     @JoinColumn (name = "id_cat")
     private Categorie categorie;
+    private boolean isActif;
 
     //CONSTRUCTEURS
     public Produit() {
     }
-    public Produit(String marque, String nom, String mini_desc, String description, Float prix, int promo, String url_photo, Categorie categorie) {
+    public Produit(String marque, String nom, String mini_desc, String description, Float prix, int promo, String url_photo, int quantite, Categorie categorie, boolean isActif) {
         this.marque = marque;
         this.nom = nom;
         this.mini_desc = mini_desc;
@@ -35,7 +37,9 @@ public class Produit {
         this.prix = prix;
         this.promo = promo;
         this.url_photo = url_photo;
+        this.quantite = quantite;
         this.categorie = categorie;
+        this.isActif = isActif;
     }
 
     public List<Photo> getListPhotos(){
@@ -44,6 +48,14 @@ public class Produit {
         Map<String, Object> params = new HashMap<>();
         params.put("produit", this);
         return manager.list(Photo.class, req, params);
+    }
+
+    public List<Avis> getListAvis(){
+        Manager manager = new Manager();
+        String req = "produit=:produit";
+        Map<String, Object> params = new HashMap<>();
+        params.put("produit", this);
+        return manager.list(Avis.class, req, params);
     }
 
     //GETTERS
@@ -71,8 +83,14 @@ public class Produit {
     public String getUrl_photo() {
         return url_photo;
     }
+    public int getQuantite() {
+        return quantite;
+    }
     public Categorie getCategorie() {
         return categorie;
+    }
+    public boolean getActif() {
+        return isActif;
     }
 
     //SETTERS
@@ -100,7 +118,13 @@ public class Produit {
     public void setUrl_photo(String url_photo) {
         this.url_photo = url_photo;
     }
+    public void setQuantite(int quantite) {
+        this.quantite = quantite;
+    }
     public void setCategorie(Categorie categorie) {
         this.categorie = categorie;
+    }
+    public void setActif(boolean actif) {
+        isActif = actif;
     }
 }

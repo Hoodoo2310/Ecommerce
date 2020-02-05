@@ -18,12 +18,12 @@ public class Utilisateur {
     private String mdp;
     private String email;
     private Date date_creation;
-    private Boolean isAdmin;
+    private boolean isAdmin;
 
     //CONSTRUCTEURS
     public Utilisateur() {
     }
-    public Utilisateur(String nom, String prenom, String mdp, String email, Date date_creation, Boolean isAdmin) {
+    public Utilisateur(String nom, String prenom, String mdp, String email, Date date_creation, boolean isAdmin) {
         this.nom = nom;
         this.prenom = prenom;
         this.mdp = mdp;
@@ -39,6 +39,7 @@ public class Utilisateur {
         params.put("utilisateur", this);
         return manager.list(Adresse.class, req, params);
     }
+
 
     //GETTERS
     public int getId() {
@@ -82,7 +83,7 @@ public class Utilisateur {
     public void setDate_creation(Date date_creation) {
         this.date_creation = date_creation;
     }
-    public void setAdmin(Boolean admin) {
+    public void setAdmin(boolean admin) {
         isAdmin = admin;
     }
 }

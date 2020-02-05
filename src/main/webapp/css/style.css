@@ -20,6 +20,14 @@ body {
 	background-color: #1A1A1A;
 	color: #FFF;
 }
+p.info{
+	overflow-y: hidden;
+	height: 30px;
+}
+
+p.info:hover{
+	height: auto;
+}
 img {
 	height: auto;
 	max-width: 100%;
@@ -555,7 +563,7 @@ h6 {
 }
 .product-hov {
 	position: absolute;
-	bottom: 68px;
+	top: 210px;
 	margin: 0 auto;
 	left: 0;
 	right: 0;
@@ -1220,6 +1228,9 @@ footer {
 /*List View end*/
 
 /*left side View start*/
+.btn-topvente {
+	padding: 10px !important;
+}
 .sidebar-title h4 {
 	font-size: 17px;
 	font-weight: bold;
@@ -1239,6 +1250,9 @@ footer {
 	list-style: outside none none;
 	overflow: hidden;
 	line-height: 30px;
+}
+.Best-Products-block .title-toggle > li {
+	margin-bottom: 25px;
 }
 .category, .color, .manufacture {
 	margin: 0 0 20px;
@@ -1894,6 +1908,13 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#33ffffff', e
 
 
 /*cart page start*/
+.btn-delete-panier{
+	color: red;
+}
+.btn-delete-panier:hover{
+	background: red;
+	color: white;
+}
 .cart-content {
 	background: #fff none repeat scroll 0 0;
 	border: 1px solid #eaeaea;

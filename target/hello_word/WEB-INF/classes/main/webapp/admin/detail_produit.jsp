@@ -1,5 +1,11 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+
+<% pageContext.setAttribute("newLineChar", "\n"); %>
+<% pageContext.setAttribute("newLineHtml", "<br/>"); %>
+
 <%@ include file="headerFooter/header.jsp"%>
 
 <!-- AFFICHAGE PRODUIT -->
@@ -12,21 +18,34 @@
                 <div class="card card-primary card-outline">
                     <div class="card-header">
                         <h3 class="card-title">${produit.getNom()}</h3>
+                        <div class="card-tools">
+                            <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
+                                <i class="fas fa-minus"></i></button>
+                            <button type="button" class="btn btn-tool" data-card-widget="remove" data-toggle="tooltip" title="Remove">
+                                <i class="fas fa-times"></i></button>
+                        </div>
                     </div>
                     <div class="container-fluid">
                         <div class="card-body">
                             <p>Catégorie : ${produit.getCategorie().getNom()}</p>
                             <p>${produit.getMarque()}</p>
                             <p><img src="${produit.getUrl_photo()}"></p>
-                            <p>${produit.getMini_desc()}</p>
-                            <p>${produit.getDescription()}</p>
+                            <p>${fn:replace(produit.getMini_desc(), newLineChar, newLineHtml )}</p>
+                            <p>${fn:replace(produit.getDescription(), newLineChar, newLineHtml )}</p>
                             <p>Prix : ${produit.getPrix()} € TTC</p>
-                            <p class="detailPrixPromo">
-                                <c:if test="${produit.getPromo() != 0}">
-                                    <p class="promo"><c:out value="Promo : ${produit.getPromo()} %"/></p>
-                                    <p class="newPrix">Nouveau prix : ${produit.getPrix() - (produit.getPrix() * produit.getPromo() /100)} € TTC</p>
-                                </c:if>
-                            </p>
+                            <c:if test="${produit.getPromo() != 0}">
+                                <p class="promo"><c:out value="Promo : ${produit.getPromo()} %"/></p>
+                                <p class="newPrix">Nouveau prix : <fmt:formatNumber type="number" pattern="###.##" value="${produit.getPrix() - (produit.getPrix() * produit.getPromo())/100}" /> €</p>
+                            </c:if>
+                            <p>Quantité : ${produit.getQuantite()}</p>
+                            <c:choose>
+                                <c:when test="${produit.getActif() == true}">
+                                    <p>Etat : En vente</p>
+                                </c:when>
+                                <c:otherwise>
+                                    <p>Etat : Désactivé</p>
+                                </c:otherwise>
+                            </c:choose>
                             <a href="/admin/produit"><button class="btn btn-primary">Retour</button></a>
                         </div>
                     </div>
@@ -153,6 +172,10 @@
                                     <label>Url Photo</label>
                                     <input class="form-control" name="url_photo" value="${produit.getUrl_photo()}"></input>
                                 </div>
+                                <div class="form-group">
+                                    <label>Quantité disponible</label>
+                                    <input class="form-control" type="number" name="quantite" value="${produit.getQuantite()}"></input>
+                                </div>
                                 <div class="form-select">
                                     <label>Catégorie</label>
                                     <select name="idCategorie">
@@ -161,6 +184,30 @@
                                         </c:forEach>
                                     </select>
                                 </div>
+                                <c:choose>
+                                    <c:when test="${produit.getActif() == true}">
+                                        <div class="form-group">
+                                            <label></label>
+                                            <div class="custom-control custom-radio">
+                                                <label><input type="radio" name="isActif" value="true" checked>En vente</label>
+                                            </div>
+                                            <div class="custom-control custom-radio">
+                                                <label><input type="radio" name="isActif" value="false">Désactivé</label>
+                                            </div>
+                                        </div>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <div class="form-group">
+                                            <label></label>
+                                            <div class="custom-control custom-radio">
+                                                <label><input type="radio" name="isActif" value="true">En vente</label>
+                                            </div>
+                                            <div class="custom-control custom-radio">
+                                                <label><input type="radio" name="isActif" value="false"checked>Désactivé</label>
+                                            </div>
+                                        </div>
+                                    </c:otherwise>
+                                </c:choose>
                                 <input type="hidden" name="action" value="updateProduit">
                                 <button type="submit" class="btn btn-warning">Modifier</button>
                             </form>
@@ -199,7 +246,5 @@
     </div>
 </section>
 <!-- FIN SUPPRESSION PRODUIT -->
-
-
 
 <%@ include file="headerFooter/footer.jsp"%>

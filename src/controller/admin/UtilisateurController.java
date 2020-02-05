@@ -7,6 +7,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.Date;
 
@@ -14,6 +15,12 @@ public class UtilisateurController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        HttpSession session = req.getSession();
+        if (session.getAttribute("connect") == null){
+            resp.sendRedirect("/admin/login");
+            return;
+        }
+
         UtilisateurManager utilisateurManager = new UtilisateurManager();
 
         String id = req.getParameter("id");
@@ -31,11 +38,7 @@ public class UtilisateurController extends HttpServlet {
         req.setCharacterEncoding("UTF-8");
         UtilisateurManager utilisateurManager = new UtilisateurManager();
 
-        try{
-            utilisateurManager.add(req.getParameter("nom"), req.getParameter("prenom"), req.getParameter("mdp"), req.getParameter("email"), new Date(), "true".equals(req.getParameter("type")));
-        }catch (Exception ex){
-            ex.printStackTrace();
-        }
+        utilisateurManager.add(req.getParameter("nom"), req.getParameter("prenom"), req.getParameter("mdp"), req.getParameter("email"), new Date(), "true".equals(req.getParameter("type")));
         resp.sendRedirect(req.getContextPath() + "/admin/users");
     }
 }

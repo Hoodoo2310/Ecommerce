@@ -7,6 +7,8 @@ public class Adresse {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
+    private String nom;
+    private String prenom;
     private String adresse;
     private int cp;
     private String ville;
@@ -19,7 +21,10 @@ public class Adresse {
     //CONSTRUCTEURS
     public Adresse() {
     }
-    public Adresse(String adresse, int cp, String ville, String pays, String type, Utilisateur utilisateur) {
+
+    public Adresse(String nom, String prenom, String adresse, int cp, String ville, String pays, String type, Utilisateur utilisateur) {
+        this.nom = nom;
+        this.prenom = prenom;
         this.adresse = adresse;
         this.cp = cp;
         this.ville = ville;
@@ -31,6 +36,12 @@ public class Adresse {
     //GETTERS
     public int getId() {
         return id;
+    }
+    public String getNom() {
+        return nom;
+    }
+    public String getPrenom() {
+        return prenom;
     }
     public String getAdresse() {
         return adresse;
@@ -55,6 +66,15 @@ public class Adresse {
     public void setId(int id) {
         this.id = id;
     }
+
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+
+    public void setPrenom(String prenom) {
+        this.prenom = prenom;
+    }
+
     public void setAdresse(String adresse) {
         this.adresse = adresse;
     }

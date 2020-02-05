@@ -3,14 +3,14 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
          version="4.0">
-
+    <!-- ____________________ SERVLET ADMIN ___________________________________ -->
     <servlet>
-        <servlet-name>home</servlet-name>
-        <servlet-class>controller.HomeController</servlet-class>
+        <servlet-name>login</servlet-name>
+        <servlet-class>controller.admin.LoginController</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>home</servlet-name>
-        <url-pattern></url-pattern>
+        <servlet-name>login</servlet-name>
+        <url-pattern>/admin/login</url-pattern>
     </servlet-mapping>
 
     <servlet>
@@ -93,4 +93,135 @@
         <servlet-name>dashboardDetailUtilisateur</servlet-name>
         <url-pattern>/admin/detail_utilisateur</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>dashboardContact</servlet-name>
+        <servlet-class>controller.admin.ContactController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>dashboardContact</servlet-name>
+        <url-pattern>/admin/contact</url-pattern>
+    </servlet-mapping>
+    <!--_______________________ FIN SERVLET ADMIN ____________________________________________-->
+
+    <!--_______________________ SERVLET CLIENT _______________________________________________-->
+    <servlet>
+        <servlet-name>home</servlet-name>
+        <servlet-class>controller.HomeController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>home</servlet-name>
+        <url-pattern></url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>detail_produit</servlet-name>
+        <servlet-class>controller.DetailProduitController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>detail_produit</servlet-name>
+        <url-pattern>/detail_produit</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>list-view</servlet-name>
+        <servlet-class>controller.CategorieListViewController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>list-view</servlet-name>
+        <url-pattern>/list-view</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>list-marque</servlet-name>
+        <servlet-class>controller.MarqueController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>list-marque</servlet-name>
+        <url-pattern>/list-marque</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>newsletter</servlet-name>
+        <servlet-class>controller.NewsletterController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>newsletter</servlet-name>
+        <url-pattern>/newsletter</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>cart</servlet-name>
+        <servlet-class>controller.PanierController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>cart</servlet-name>
+        <url-pattern>/cart</url-pattern>
+    </servlet-mapping>
+
+    <!-- PAIEMENT -->
+    <servlet>
+        <servlet-name>checkoutStep1</servlet-name>
+        <servlet-class>controller.checkout.CheckoutStep1Controller</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>checkoutStep1</servlet-name>
+        <url-pattern>/checkoutStep1</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>checkoutStep2</servlet-name>
+        <servlet-class>controller.checkout.CheckoutStep2Controller</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>checkoutStep2</servlet-name>
+        <url-pattern>/checkoutStep2</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>checkoutStep3</servlet-name>
+        <servlet-class>controller.checkout.CheckoutStep3Controller</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>checkoutStep3</servlet-name>
+        <url-pattern>/checkoutStep3</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>checkoutStep4</servlet-name>
+        <servlet-class>controller.checkout.CheckoutStep4Controller</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>checkoutStep4</servlet-name>
+        <url-pattern>/checkoutStep4</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>clientLogin</servlet-name>
+        <servlet-class>controller.LoginController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>clientLogin</servlet-name>
+        <url-pattern>/clientLogin</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>client</servlet-name>
+        <servlet-class>controller.ClientController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>client</servlet-name>
+        <url-pattern>/client</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>contact</servlet-name>
+        <servlet-class>controller.ContactController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>contact</servlet-name>
+        <url-pattern>/contact</url-pattern>
+    </servlet-mapping>
+
+    <!--____________________________ FIN SERVLET CLIENT _______________________________________________-->
 </web-app>

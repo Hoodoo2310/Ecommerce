@@ -21,7 +21,8 @@ public class DataBaseManager {
                 .addAnnotatedClass(Adresse.class)
                 .addAnnotatedClass(Commande.class)
                 .addAnnotatedClass(LigneCommande.class)
-                .addAnnotatedClass(Newsletter.class);
+                .addAnnotatedClass(Newsletter.class)
+                .addAnnotatedClass(Contact.class);
         ServiceRegistry registry = new ServiceRegistryBuilder().applySettings(con.getProperties()).buildServiceRegistry();
         SessionFactory sf = con.buildSessionFactory(registry);
         return sf.openSession();

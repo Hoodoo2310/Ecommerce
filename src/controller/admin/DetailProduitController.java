@@ -13,12 +13,20 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.math.BigDecimal;
 
 public class DetailProduitController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        HttpSession session = req.getSession();
+        if (session.getAttribute("connect") == null){
+            resp.sendRedirect("/admin/login");
+            return;
+        }
+
         String idProduit = req.getParameter("id");
         ProduitManager produitManager = new ProduitManager();
         CategorieManager categorieManager = new CategorieManager();
@@ -39,17 +47,17 @@ public class DetailProduitController extends HttpServlet {
         String idProd = req.getParameter("idProd");
 
         if (action.equals("updateProduit")){
-
+            //TODO : CODE MODIFIER PRODUIT A FINIR
         }else if (action.equals("deleteProduit")){
-
+            //TODO : CODE DESACTIVER LA VENTE D'UN PRODUIT
             return;
         }else if (action.equals("ajoutPhoto")){
             Produit produit = produitManager.getById(Produit.class, Integer.parseInt(idProd));
             photoManager.add(req.getParameter("url_photo"), Integer.parseInt(req.getParameter("position")), produit);
         }else if (action.equals("updatePhoto")){
-
+            //TODO : CODE MODIFIER PHOTO A FINIR
         }else if (action.equals("deletePhoto")){
-
+            //TODO : CODE SUPPRIMER PHOTO A FINIR
         }
         resp.sendRedirect(req.getContextPath() + "/admin/detail_produit?id=" +idProd);
     }

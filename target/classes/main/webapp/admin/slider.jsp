@@ -17,19 +17,38 @@
                     <div class="container-fluid">
                         <div class="flex-column">
                             <form method="post" action="/admin/slider" role="form" class="form" style="margin:50px;">
-                                <div class="form-select">
-                                    <label>Produit</label>
-                                    <select class="form-control select2-container" name="idProduit">
-                                        <c:forEach items="${ listeProduit }" var="produit">
-                                            <option value="${produit.getId()}">${produit.getNom()}</option>
-                                        </c:forEach>
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <label>URL de la photo</label>
-                                    <input type="text" class="form-control input-lg" name="url_photo" placeholder="Merci saisir de l'url de la photo">
-                                </div>
-                                <button type="submit" class="btn btn-primary">Ajout Slider</button>
+                                <c:choose>
+                                    <c:when test="${idUserUpdate == null}">
+                                        <div class="form-select">
+                                            <label>Produit</label>
+                                            <select class="form-control select2-container" name="idProduit">
+                                                <c:forEach items="${ listeProduit }" var="produit">
+                                                    <option value="${produit.getId()}">${produit.getNom()}</option>
+                                                </c:forEach>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>URL de la photo</label>
+                                            <input type="text" class="form-control input-lg" name="url_photo" placeholder="Merci saisir de l'url de la photo">
+                                        </div>
+                                        <button type="submit" class="btn btn-primary">Ajout Slider</button>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <div class="form-select">
+                                            <label>Produit</label>
+                                            <select class="form-control select2-container" name="idProduit">
+                                                <c:forEach items="${ listeProduit }" var="produit">
+                                                    <option value="${produit.getId()}">${produit.getNom()}</option>
+                                                </c:forEach>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>URL de la photo</label>
+                                            <input type="text" class="form-control input-lg" name="url_photo" value="${updateSlider.getUrl_photo()}">
+                                        </div>
+                                        <button type="submit" class="btn btn-primary">Ajout Slider</button>
+                                    </c:otherwise>
+                                </c:choose>
                             </form>
                         </div>
                     </div>

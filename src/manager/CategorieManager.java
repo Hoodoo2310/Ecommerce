@@ -7,8 +7,8 @@ import java.util.List;
 
 public class CategorieManager extends Manager {
 
-    public void add(String nom){
-        Categorie categorie = new Categorie(nom);
+    public void add(String nom, String urlPhoto){
+        Categorie categorie = new Categorie(nom, urlPhoto);
         super.save(categorie);
     }
 

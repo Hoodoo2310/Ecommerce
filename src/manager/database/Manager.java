@@ -1,5 +1,6 @@
 package manager.database;
 
+import models.Categorie;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -68,6 +69,15 @@ public class Manager {
         Session session = DataBaseManager.getSession();
         Transaction tx = session.beginTransaction();
         T obj = (T) session.get(cls, id);
+        tx.commit();
+        session.close();
+        return obj;
+    }
+
+    public <T> T getByMarque(Class<T> cls, String marque) {
+        Session session = DataBaseManager.getSession();
+        Transaction tx = session.beginTransaction();
+        T obj = (T) session.get(cls, marque);
         tx.commit();
         session.close();
         return obj;

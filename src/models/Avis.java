@@ -10,7 +10,7 @@ public class Avis {
     private int id;
     private Date date_avis;
     private String avis;
-    private int note;
+    private float note;
     @ManyToOne
     @JoinColumn(name = "id_prod")
     private Produit produit;
@@ -21,7 +21,7 @@ public class Avis {
     //CONSTRUCTEURS
     public Avis() {
     }
-    public Avis(Date date_avis, String avis, int note, Produit produit, Utilisateur utilisateur) {
+    public Avis(Date date_avis, String avis, float note, Produit produit, Utilisateur utilisateur) {
         this.date_avis = date_avis;
         this.avis = avis;
         this.note = note;
@@ -39,7 +39,7 @@ public class Avis {
     public String getAvis() {
         return avis;
     }
-    public int getNote() {
+    public float getNote() {
         return note;
     }
     public Produit getProduit() {
@@ -59,7 +59,7 @@ public class Avis {
     public void setAvis(String avis) {
         this.avis = avis;
     }
-    public void setNote(int note) {
+    public void setNote(float note) {
         this.note = note;
     }
     public void setProduit(Produit produit) {

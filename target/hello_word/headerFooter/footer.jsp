@@ -5,14 +5,14 @@
         <div class="row">
             <div class="col-md-12">
                 <div class= "newslatter">
-                    <form>
-                        <h2 class="tf">Soyez le premier à recevoir nos nouvelles offres</h2>
-                        <p>Inscrivez-vous à notre newsletter</p>
-                        <div class="input-group">
-                            <input class=" form-control" type="text" placeholder="Saisissez votre email ici......">
+                    <h2 class="tf">Soyez le premier à recevoir nos nouvelles offres</h2>
+                    <p>Inscrivez-vous à notre newsletter</p>
+                    <div class="input-group">
+                        <form method="post" action="/newsletter">
+                            <input class=" form-control" type="text" name="email" placeholder="Saisissez votre email ici......">
                             <button type="submit" value="Sign up" class="btn btn-large btn-primary">S'inscrire</button>
-                        </div>
-                    </form>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
@@ -20,7 +20,7 @@
             <div class="col-md-3">
                 <div class="about">
                     <div class="footer-logo"></div>
-                    <p>Tout l'univers du hi-tech à porter de clique</p>
+                    <p>Tout l'univers du hi-tech à porter de clic</p>
                 </div>
             </div>
             <div class="col-md-3">
@@ -99,5 +99,71 @@
 <script src="Bootstrap/js/bootstrap.js"></script>
 <script src="js/owl.carousel.min.js"></script>
 <script src="js/globle.js"></script>
+<script type="text/javascript" src="js/smoothproducts.min.js"></script>
+<!-- product tab js -->
+<script src="js/jquery-ui.js"></script>
+<script type="text/javascript">
+    $( document ).ready(function() {
+        $("#tabs li a").click(function(e){
+            var title = $(e.currentTarget).attr("title");
+            $("#tabs li a").removeClass("selected")
+            $(".tab-content li div").removeClass("selected")
+            $(".tab-"+title).addClass("selected")
+            $(".items-"+title).addClass("selected")
+            $("#items").attr("class","tab-"+title);
+        });
+        $(window).load( function() {
+            $('.sp-wrap').smoothproducts();
+        });
+    });
+</script>
+
+<!-- jQuery (price shorting) -->
+<script>
+    $( document ).ready(function() {
+        $( "#slider-range" ).slider({
+            range: true,
+            min: 0,
+            max: 800,
+            values: [ 75, 500 ],
+            slide: function( event, ui ) {
+                $( "#amount" ).val( "$" + ui.values[ 0 ] + " - $" + ui.values[ 1 ] );
+            }
+        });
+        $( "#amount" ).val( "$" + $( "#slider-range" ).slider( "values", 0 ) +
+            " - $" + $( "#slider-range" ).slider( "values", 1 ) );
+    });
+</script>
+
+<!-- checkout-step3 -->
+<script>
+    function close_accordion_section() {
+        jQuery('.accordion .accordion-section-title').removeClass('active');
+        jQuery('.accordion .accordion-section-content').slideUp(300).removeClass('open');
+        jQuery('.accordion2 .accordion-section-title1').removeClass('active');
+        jQuery('.accordion2 .accordion-section-content1').slideUp(300).removeClass('open');
+    }
+
+    jQuery('.accordion-section-title').click(function(e) {
+        // Grab current anchor value
+        var currentAttrValue = jQuery(this).attr('href');
+
+        if(jQuery(e.target).is('.active')) {
+            close_accordion_section();
+        }else {
+            close_accordion_section();
+
+            // Add active class to section title
+            jQuery(this).addClass('active');
+            // Open up the hidden content panel
+            jQuery('.accordion ' + currentAttrValue).slideDown(300).addClass('open');
+            jQuery('.accordion2 ' + currentAttrValue).slideDown(300).addClass('open');
+        }
+
+        e.preventDefault();
+    });
+</script>
+
+
 </body>
 </html>
